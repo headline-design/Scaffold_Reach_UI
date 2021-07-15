@@ -1,6 +1,6 @@
 import React from 'react';
-import {  Button, Text } from "rimble-ui";
-import { ToastMessage } from 'rimble-ui';
+import {  Button, Text } from "pipeline-ui";
+import { ToastMessage } from 'pipeline-ui';
 
 export class Wrapper extends React.Component {
     render() {
@@ -34,7 +34,7 @@ export class FundAccount extends React.Component {
     }
 
     render() {
-        const {addr, bal, standardUnit, defaultFundAmtStandard, parent} = this.props;
+        const { bal, standardUnit, defaultFundAmtStandard, parent} = this.props;
         return (
             <div>
                 <h1>Fund account</h1>
