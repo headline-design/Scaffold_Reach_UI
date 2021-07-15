@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Heading, Text } from "rimble-ui";
-import { MetaMaskButton } from 'rimble-ui';
-import { EthAddress } from "rimble-ui";
+import { Button, Heading, Text } from "pipeline-ui";
+import { AlgoAddress } from "pipeline-ui";
 
-const ETH_ADDRESS = "0x9505C8Fc1aD98b0aC651b91245d02D055fEc8E49";
+
+const ALGO_ADDRESS = "0x9505C8Fc1aD98b0aC651b91245d02D055fEc8E49";
 
 const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
 
@@ -29,7 +29,7 @@ export class EnterInfo extends React.Component {
         const {info} = this.state || {};
         return (
             <div>
-                <EthAddress address={ETH_ADDRESS} />
+                <AlgoAddress address={ALGO_ADDRESS} />
 
                 <Text>
                     Alice, what is your secret info?
@@ -89,7 +89,7 @@ export class RunBackend extends React.Component {
                     and the second will publish your secret while simultaneously
                     retrieving the requested amount from the contract.
                 </Text>
-                <MetaMaskButton  onClick={() => parent.runBackend()}>Connect</MetaMaskButton><br/>
+                <Button  onClick={() => parent.runBackend()}>Connect</Button><br/>
 
             </div>
         );
