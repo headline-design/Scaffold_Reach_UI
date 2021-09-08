@@ -2,7 +2,7 @@
   "name": "reach",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://www.kwamebryan.com/reach_react",
+  "homepage": "https://scaffold-reach-ui.vercel.app",
   "dependencies": {
     "@reach-sh/stdlib": "0.1.2-rc.46",
     "@testing-library/jest-dom": "^5.11.4",
