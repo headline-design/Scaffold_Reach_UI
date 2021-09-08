@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Button, Text } from "pipeline-ui";
-import { ToastMessage } from 'pipeline-ui';
+import { PipelineShell, ToastMessage } from 'pipeline-ui';
 
 export class Wrapper extends React.Component {
     render() {
@@ -18,11 +18,11 @@ export class Wrapper extends React.Component {
 export class ConnectAccount extends React.Component {
     render() {
         return (
-            <div>
+            <PipelineShell>
                 <ToastMessage message={"Please wait while we connect to your account.\n" +
                 "                    If this takes more than a few seconds, there may be something wrong."} />
 
-            </div>
+            </PipelineShell>
         )
     }
 }
@@ -36,25 +36,31 @@ export class FundAccount extends React.Component {
     render() {
         const { bal, standardUnit, defaultFundAmtStandard, parent} = this.props;
         return (
-            <div>
+            <PipelineShell>
                 <h1>Fund account</h1>
                 <br />
+                <Text className="Text">
                 Address:
+                </Text>
                 <br />
+                <Text className="Text">
                 Balance: {bal} {standardUnit}
                 <hr />
+                </Text>
                 Would you like to fund your account with additional {standardUnit}?
                 <br />
+                <Text className="Text">
                 (This only works on certain devnets)
                 <br />
+                </Text>
                 <input
                     type='number'
                     placeholder={defaultFundAmtStandard}
                     onChange={(e) => this.setState({amt: e.currentTarget.value})}
                 />
-                <Button onClick={() => parent.fundAccount(this.state.amt)}>Fund Account</Button>
-                <Button onClick={() => parent.skipFundAccount()}>Skip</Button>
-            </div>
+                <Button size="medium" onClick={() => parent.fundAccount(this.state.amt)}>Fund Account</Button>
+                <Button size="medium" onClick={() => parent.skipFundAccount()}>Skip</Button>
+            </PipelineShell>
         );
     }
 }
@@ -64,23 +70,23 @@ export class SelectRole extends React.Component {
         const {parent} = this.props;
 
         return (
-            <div>
-                <Text>
-                    Please select a role:
+            <PipelineShell>
+                <Text className="Text Text-23">
+                    PLEASE SELECT A ROLE:
                 </Text>
-                <Text>
-                    <Button
+                <Text className="Text Text-2">
+                    <Button className="pipeline-btn-solid-1" size="medium"
                         onClick={() => parent.selectAlice()}
-                    >Alice</Button>
+                    >Alice</Button><br />
                     <br /> Requests payment from Bob in order to reveal a secret.
                 </Text>
-                <Text>
-                    <Button
+                <Text className="Text Text-2">
+                    <Button className="pipeline-btn-solid-1" size="medium"
                         onClick={() => parent.selectBob()}
                     >Bob</Button>
-                    <br /> Pays Alice in order for her to reveal a secret.
-                </Text>
-            </div>
+                    <br /><br /> Pays Alice in order for her to reveal a secret.
+                    <br /> <br /></Text>
+            </PipelineShell>
         );
     }
 }

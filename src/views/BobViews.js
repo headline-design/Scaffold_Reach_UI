@@ -1,16 +1,16 @@
 import React from 'react';
-import { Button, Text } from "pipeline-ui";
+import { PipelineShell, Button, Heading, Text, AlgoAddress, Input, ToastMessage } from "pipeline-ui";
 
 export class RunBackend extends React.Component {
     render() {
         const {parent} = this.props;
         const {ctcInfoStr} = this.state || {};
         return (
-            <div>
-                <Text>
+            <PipelineShell>
+                <Text className="Text">
                     Alice will deploy the contract.
                 </Text>
-                <Text>
+                <Text className="Text">
                     Ask Alice for her contract info and paste it here:
                 </Text>
                 <textarea
@@ -23,8 +23,8 @@ export class RunBackend extends React.Component {
                 <Button
                     disabled={!ctcInfoStr}
                     onClick={() => parent.runBackend(ctcInfoStr)}
-                ><Text>Connect</Text></Button>
-            </div>
+                ><Text className="Text">Connect</Text></Button>
+            </PipelineShell>
         );
     }
 }
@@ -34,14 +34,14 @@ export class ApproveRequest extends React.Component {
         const {requestStandard} = this.props;
         if (!requestStandard) {
             return (
-                <Text>
+                <Text className="Text">
                     Once Alice has submitted her requested amount,
                     you will be prompted to pay it.
                 </Text>
             );
         } else {
             return (
-                <Text>
+                <Text className="Text">
                     You have received a prompt to pay Alice's requested amount.
                 </Text>
             );
@@ -54,20 +54,20 @@ export class DisplayInfo extends React.Component {
         const {info} = this.props;
         if (!info) {
             return (
-                <Text>
+                <Text className="Text">
                     Waiting for Alice to reveal her secret info...
                 </Text>
             );
         } else {
             return (
-                <div>
-                    <Text>
+                <PipelineShell>
+                    <Text className="Text">
                         Alice's secret info is: <strong>{info}</strong>
                     </Text>
-                    <Text>
+                    <Text className="Text">
                         Thank you, Bob. The contract has run to completion.
                     </Text>
-                </div>
+                </PipelineShell>
             );
         }
     }
@@ -77,9 +77,9 @@ export class BobWrapper extends React.Component {
     render() {
         const {bob} = this.props;
         return (
-            <div className='Bob'>
+            <PipelineShell className='Bob'>
                 {bob}
-            </div>
+            </PipelineShell>
         );
     }
 }

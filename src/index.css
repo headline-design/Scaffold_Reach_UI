@@ -87,7 +87,7 @@ textarea {
   font-size: calc(10px + 2vmin);
   height:160px;
   width:320px;
-  border-radius:10px;
+  border-radius:0px;
 }
 
 .ContractInfo {
@@ -98,4 +98,33 @@ textarea {
   padding: 2vw;
   overflow-x: scroll;
   white-space: pre;
+}
+
+.pipeline-box {
+  overflow: hidden;
+  white-space: normal !important;
+  text-overflow: inherit;
+  word-wrap: normal;
+}
+
+.Text {
+  padding: 2% !important;
+}
+
+.pipeline-btn-solid {
+  margin-right: 0px !important;
+}
+
+.Text-23 {
+  box-shadow: 0 30px 60px 0 rgb(90 116 148 / 40%), 0px 4px 0 0 rgb(210 210 249);
+  padding: 4% !important;
+  background-color: #ffffff;
+  color: #000;
+  margin-bottom: 3%;
+}
+
+
+.pipeline-btn-solid-1 {
+  min-width: 60% !important;
+  overflow: hidden;
 }

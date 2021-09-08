@@ -1,7 +1,5 @@
 import React from 'react';
-import { Button, Heading, Text } from "pipeline-ui";
-import { AlgoAddress } from "pipeline-ui";
-
+import { PipelineShell, Button, Heading, Text, AlgoAddress, Input, ToastMessage } from "pipeline-ui";
 
 const ALGO_ADDRESS = "0x9505C8Fc1aD98b0aC651b91245d02D055fEc8E49";
 
@@ -11,14 +9,14 @@ export class Deploy extends React.Component {
     render() {
         const {parent} = this.props;
         return (
-            <div>
-                <Text>
+            <PipelineShell>
+                <Text className="Text">
                     As Alice, it is your job to deploy the contract.
                 </Text>
                 <Button size="medium"
                     onClick={() => parent.deploy()}
-                ><Text>Deploy</Text></Button>
-            </div>
+                ><Text className="Text">Deploy</Text></Button>
+            </PipelineShell>
         );
     }
 }
@@ -28,10 +26,10 @@ export class EnterInfo extends React.Component {
         const {parent, defaultInfo} = this.props;
         const {info} = this.state || {};
         return (
-            <div>
+            <PipelineShell>
                 <AlgoAddress address={ALGO_ADDRESS} />
 
-                <Text>
+                <Text className="Text">
                     Alice, what is your secret info?
                 </Text>
                 <br />
@@ -40,8 +38,8 @@ export class EnterInfo extends React.Component {
                     placeholder={defaultInfo}
                 />
                 <br />
-                <Button size="medium" onClick={() => parent.enterInfo(info || defaultInfo)}>Submit Secret Info</Button><br/>
-            </div>
+                <Button size="medium" onClick={() => parent.enterInfo(info || defaultInfo)}>Submit Secret Info</Button>
+            </PipelineShell>
         );
     }
 }
@@ -51,19 +49,19 @@ export class EnterRequest extends React.Component {
         const {parent, standardUnit, defaultRequestStandard} = this.props;
         const {req} = this.state || {};
         return (
-            <div>
-                <Text>
+            <PipelineShell>
+                <Text className="Text">
                 Alice, how much {standardUnit} should Bob pay you
                 to reveal this info?
                 </Text>
-                <input
+                <Input
                     type='number'
                     onChange={(e) => this.setState({req: e.currentTarget.value})}
                     placeholder={defaultRequestStandard}
                 />
                 <br /> <br />
-                <Button  size="medium" mr={3} onClick={() => parent.enterRequest(req || defaultRequestStandard)}>Submit request</Button><br/>
-            </div>
+                <Button  size="medium" mr={3} onClick={() => parent.enterRequest(req || defaultRequestStandard)}>Submit request</Button>
+            </PipelineShell>
         );
     }
 }
@@ -72,18 +70,18 @@ export class RunBackend extends React.Component {
     render() {
         const {parent, info, requestStandard, standardUnit} = this.props;
         return (
-            <div>
-                <Text>
+            <PipelineShell>
+                <Text className="Text">
                     You request <strong>{requestStandard}</strong> {standardUnit + ' '}
                     to reveal secret info: <strong>{info}</strong>
                 </Text>
-                <Text>
+                <Text className="Text">
                     Your Address:
                 </Text>
-                <Text>
+                <Text className="Text">
                     Ready to connect to the contract?
                 </Text>
-                <Text>
+                <Text className="Text">
                     You will be prompted to pay for two transactions.
                     The first transaction will publish your requested amount,
                     and the second will publish your secret while simultaneously
@@ -91,7 +89,7 @@ export class RunBackend extends React.Component {
                 </Text>
                 <Button  onClick={() => parent.runBackend()}>Connect</Button><br/>
 
-            </div>
+            </PipelineShell>
         );
     }
 }
@@ -112,18 +110,18 @@ export class BackendRunning extends React.Component {
         const {ctcInfoStr} = this.props;
         if (ctcInfoStr === undefined) {
             return (
-                <div>
-                    <Text>
+                <ToastMessage>
+                    <Text className="Text">
                     Waiting for the contract to deploy...
                     If this takes more than 1 min, something may be wrong.
                     </Text>
-                </div>
+                </ToastMessage>
             )
         } else {
             return (
-                <div>
+                <PipelineShell>
                     <Heading>Contract Info</Heading>
-                    <Text>The contract is running!
+                    <Text className="Text">The contract is running!
                     Please give Bob the following contract info.
                     </Text>
                     <pre className='ContractInfo'>
@@ -135,9 +133,9 @@ export class BackendRunning extends React.Component {
                     >Copy to clipboard</Button>
                     <br />
 
-                    <Text> will be automatically prompted to approve the next transaction
+                    <Text className="Text"> will be automatically prompted to approve the next transaction
                     once Bob has paid the requested amount into the contract.</Text>
-                </div>
+                </PipelineShell>
             );
         }
     }
@@ -146,12 +144,12 @@ export class BackendRunning extends React.Component {
 export class BackendRan extends React.Component {
     render() {
         return (
-            <div>
-                <Text>
+            <PipelineShell>
+                <Text className="Text">
                     Thank you, Alice.
                     The contract has run to completion.
                 </Text>
-            </div>
+            </PipelineShell>
         );
     }
 }
@@ -160,9 +158,9 @@ export class AliceWrapper extends React.Component {
     render() {
         const {alice} = this.props;
         return (
-            <div className="Alice">
+            <PipelineShell className="Alice">
                 {alice}
-            </div>
+            </PipelineShell>
         );
     }
 }
